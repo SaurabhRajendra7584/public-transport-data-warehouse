@@ -1,0 +1,12 @@
+public_transport_warehouse:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: YOUR_GCP_PROJECT
+      dataset: transport_dev
+      location: US
+      threads: 4
+      job_execution_timeout_seconds: 300
+      job_retries: 1

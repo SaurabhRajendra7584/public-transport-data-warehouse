@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: raw_transport
+    database: "{{ target.project }}"
+    schema: transport_raw
+    tables:
+      - name: trips
+        description: Raw trip records exposed from licensed files in Google Cloud Storage.
+        columns:
+          - name: trip_id
+            tests:
+              - not_null
+          - name: service_date
+            tests:
+              - not_null

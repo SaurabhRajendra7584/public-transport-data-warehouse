@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: stg_transit_trips
+    description: Typed and deduplicated trip-level records.
+    columns:
+      - name: trip_id
+        tests:
+          - not_null
+          - unique
+      - name: service_date
+        tests:
+          - not_null
+      - name: route_id
+        tests:
+          - not_null
+      - name: passenger_count
+        tests:
+          - not_null
+      - name: fare_amount
+        tests:
+          - not_null
+      - name: arrival_delay_minutes
+        tests:
+          - not_null
+
+  - name: fct_route_service_daily
+    description: Route reliability and ridership metrics at service-date grain.
+    columns:
+      - name: service_date
+        tests:
+          - not_null
+      - name: route_id
+        tests:
+          - not_null
+      - name: trip_count
+        tests:
+          - not_null
+      - name: on_time_percentage
+        tests:
+          - not_null
+
+  - name: rejected_transit_trips
+    description: Source records excluded from analytics, retained with a reason.
+    columns:
+      - name: rejection_reason
+        tests:
+          - not_null
